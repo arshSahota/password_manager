@@ -1,4 +1,5 @@
 import json
+from utils import logger, log_message
 
 def load_data():
     try:
@@ -10,9 +11,13 @@ def load_data():
 def save_data(data):
     with open("data.json", "w") as f:
         json.dump(data, f, indent=4)
-    
+
+@logger
 def add_password(site, username, password):
     data = load_data()
+
+    if site in data:
+        print("Site already exists. Updating password.")
 
     data[site] = {
         "username": username,
@@ -20,6 +25,7 @@ def add_password(site, username, password):
     }
 
     save_data(data)
+    log_message(f"Added/Updated password for {site}")
 
 def view_passwords():
     data = load_data()
@@ -27,11 +33,14 @@ def view_passwords():
     if not data:
         print("No passwords stored.")
         return
+
+    print("\nStored Passwords:\n")
+
     for site, details in data.items():
-        print(f"Site: {site}")
-        print(f"Username: {details['username']}")
-        print(f"Password: {details['password']}")
-        print("-" * 20)
+        print(site)
+        print(f"  Username: {details['username']}")
+        print(f"  Password: {details['password']}")
+        print("-" * 25)
     
 def get_password(site):
     data = load_data()
@@ -43,6 +52,7 @@ def get_password(site):
     else:
         print("Site not found.")
 
+@logger
 def delete_password(site):
     data = load_data()
 
@@ -50,5 +60,7 @@ def delete_password(site):
         del data[site]
         save_data(data)
         print(f"{site} deleted successfully.")
+        log_message(f"Deleted Password for {site}")
     else:
         print("Site not found.")
+        log_message(f"Delete failed: site not found")

@@ -1,5 +1,9 @@
 {
-    "google.com": {
+    "apple.com": {
+        "username": "arshdeep",
+        "password": "password"
+    },
+    "bcit.ca": {
         "username": "arshdeep",
         "password": "password"
     }

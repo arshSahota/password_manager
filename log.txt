@@ -1,0 +1,18 @@
+add_password started
+Added password for google.com
+add_password ended
+delete_password started
+Delete Password for google.com
+delete_password ended
+add_password started
+Added password for apple.com
+add_password ended
+add_password started
+Added password for google.com
+add_password ended
+add_password started
+Added password for bcit.ca
+add_password ended
+delete_password started
+Delete Password for google.com
+delete_password ended
